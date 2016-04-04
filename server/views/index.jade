@@ -1,0 +1,63 @@
+html
+  head
+    title FlairBoard
+    link(rel="stylesheet",href="/css/bootstrap.css")
+    link(rel="stylesheet",href="/css/animate.css")
+    link(rel="stylesheet",href="/css/style.css")
+    link(rel="stylesheet",href="/css/site.css")
+    link(rel="stylesheet",href="/fonts/font-awesome.css")
+
+body#page-top.landing-page
+  div.navbar-wrapper
+    nav(role="navigation").navbar.navbar-default.navbar-fixed-top
+      div.container
+        div.navbar-header.page-scroll
+          button(type="button",class="navbar-toggle collapsed", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
+            span.sr-only.Toggle.navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(class="navbar-brand", href="#") My Boards
+        div#navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(class="page-scroll", href="#page-top") Home
+            li
+              a(class="page-scroll", href="#features") Features
+            li
+              a(class="page-scroll", href="#team") Team
+            li
+              a(class="page-scroll", href="#testimonials") Testimonials
+            li
+              a(class="page-scroll", href="#pricing") Pricing
+            li
+              a(class="page-scroll", href="#contact") Contact
+            li
+              a(class="page-scroll", href="#page-top") Home
+
+  div(data-ride="carousel")#inSlider.carousel.carousel-fade
+    ol.carousel-indicators
+      li(data-target="#inSlider" data-slide-to="0" class="active")
+      li(data-target="#inSlider" data-slide-to="1")
+    div(role=listbox class="carousel-inner")
+      div.item.active
+        div.container
+          div.carousel-caption
+            h1 Flexible project management <br /> Customizable dashboards <br />
+            p Sign up and give it a go
+            p
+             a(class="btn btn-lg btn-primary" href="#" role="button") READ MORE
+          div.carousel-image.wow.zoomIn
+            img(src="/images/landing/laptop.png" alt="laptop")
+        div.header-back.one
+      div.item
+        div.container
+          div.carousel-caption.blank
+            h1 Great for planning Events,Trips <br /> or just keeping organised <br />
+              p Sign up and give it a go
+              p
+                a(class="btn btn-lg btn-primary" href="#" role="button") Learn more
+        div.header-back.one
+      a(class="left carousel-control" href="#inSlider" role="button" data-slide="prev")
+        span(class="glyphicon glyphicon-chevron-left" aria-hidden="true")
+        span.sr-only Next
