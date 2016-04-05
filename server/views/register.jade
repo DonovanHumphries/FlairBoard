@@ -2,7 +2,7 @@ extends accountLayout
 
 block content
   h3 Welcome to FlairBoard
-  p Create account to see it in action.
+  p Create an account to see it in action.
   form(action="/account/register" class="m-t" method="post" role="form")
     div.form-group
       input(class="form-control" data-val="true" data-val-length="The Name cannot be more than 20 characters long." data-val-length-max="20" data-val-required="The Name field is required." id="name" name="name" placeholder="Name" required="" type="text" value=postdata.name)
