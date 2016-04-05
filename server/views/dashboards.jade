@@ -1,4 +1,53 @@
+doctype html
+html
+  head
+    meta(charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0")
+    title= "FlairBoard | " + title
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/fonts/font-awesome.css')
+    link(rel='stylesheet', href='/css/animate.css')
+    link(rel='stylesheet', href='/css/style.css')
+    script(type="text/javascript" src="/scripts/jquery-2.1.1.js")
+    script(type="text/javascript" src="/scripts/plugins/jquery-ui/jquery-ui.js")
+    script(type="text/javascript" src="/scripts/bootstrap.js")
+    script(type="text/javascript" src="/scripts/plugins/slimscroll/jquery.slimscroll.min.js")
+    script(type="text/javascript" src="/scripts/plugins/metisMenu/metisMenu.min.js")
+    script(type="text/javascript" src="/scripts/plugins/pace/pace.min.js")
+    script(type="text/javascript" src="/app/inspinia.js")
+    script(type="text/javascript" src="/scripts/angular.js")
+    script(type="text/javascript" src="/scripts/angular-route.js")
+    script(type="text/javascript" src="/app/factories/AuthHttpResponseInterceptor.js")
+    script(type="text/javascript" src="/app/app.js")
+    script(type="text/javascript" src="/app/controllers/dashboard-controller.js")
 
-block content
-  h1 Dashboards
-  a(href="/account/logout") Logout
+
+  body(ng-app="flair")
+    div#wrapper(ng-controller="flair.dashboard")
+      nav.navbar-default.navbar-static-side(role="navigation")
+        div.sidebar-collapse
+          ul#side-menu.nav
+            li.nav-header
+              dv.dropdown.profile-element
+                span
+                  img.img-circle(alt="image" src="~/Images/brock.jpg")
+                a.dropdown-toggle(data-toggle="dropdown" href="#")
+                  span.clear
+                    span.block.m-t-xs
+                      strong.font-bold=username
+                    span.text-muted.text-xs.block Profile
+                      b.caret
+                ul.dropdown-menu.animated.fadeInRight.m-t-xs
+                 li
+                   a(href="") Edit
+                  li.divider
+                  li
+                    a(href="/account/logout") Logout
+              div.logo-element +FB
+            li.active
+            a(href="")
+              i.fa.fa-globe
+              span.nav-label My Boards
+              ul.nav.nav-second-level.collapse.in
+                li(ng-repeat="board in boards").ng-cloak
+                  a(style="margin-right: 40px") {{board.label}}
+
