@@ -1,4 +1,9 @@
 "use strict";
-angular.module('flair').controller('flair.dashboard', ['$scope', function ($scope) {
-$scope.boards = [{label:"board 1"},{label:"board 2"}];
+angular.module('flair').controller('flair.dashboard', ['$scope','ServiceFactory', function ($scope,ServiceFactory) {
+var service = ServiceFactory.GetDashboardService();
+
+    service.getAll().then(function(result){
+        $scope.boards= result.data;
+    })
+
 }]);

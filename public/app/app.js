@@ -6,6 +6,7 @@ var configFunction = function ($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('AuthHttpResponseInterceptor');
 };
 app.factory('AuthHttpResponseInterceptor', AuthHttpResponseInterceptor);
+app.factory('ServiceFactory', serviceFactory);
 
 configFunction.$inject = ['$routeProvider', '$httpProvider'];
 
