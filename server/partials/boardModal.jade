@@ -1,0 +1,11 @@
+form(ng-submit="ok()")
+    div.modal-header
+        h4.modal-title New Board
+    div.modal-body
+        div.form-group
+            label Board Name
+            input.form-control(placeholder="Enter your name" ng-model="data.label" focus-me="true")
+            input.form-conrol(type="hidden" ng-model="data._id")
+        div.modal-footer
+            button.btn.btn-white(type="button" ng-click="cancel()" data-dismiss="modal") Cancel
+            button.btn.btn-primary(type="button" ng-click="ok()") Save

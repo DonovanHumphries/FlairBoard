@@ -1,28 +1,19 @@
 var express = require('express');
 //serves static landing page (public)
 var dashboards = express.Router();
-var dashboardDomainManager = require('../domainManagers/dashboardDomainManager')();
-
-function OK(res){
-    sendJson({success:true})
-}
-
-function sendJson(res,obj){
-    res.setHeader('Content-Type', 'application/json');
-    var data  = {data:obj};
-    res.send(JSON.stringify(data));
-}
+var dashboardDomainManager = require('../domainManagers/dashboardDomainManager');
 
 dashboards.get('/', function(req, res) {
-    var userId = req.user._id;
-    sendJson(res,dashboardDomainManager.GetDashboards(userId));
-});
-
-dashboards.put('/', function(req, res) {
-    sendJson(res,dashboardDomainManager.CreateDashboard(req.body));
+    var userId = "abbd8dd0-fafb-11e5-ba15-03fb119882f7";
+    dashboardDomainManager.GetDashboards(userId,res);
 });
 
 dashboards.post('/', function(req, res) {
+    var userId = "abbd8dd0-fafb-11e5-ba15-03fb119882f7";
+    dashboardDomainManager.CreateDashboard(req.body,userId,res);
+});
+
+dashboards.put('/', function(req, res) {
     dashboardDomainManager.UpdateDashboard(req.body)
     OK(res);
 });

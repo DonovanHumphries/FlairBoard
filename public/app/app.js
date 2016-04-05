@@ -1,4 +1,4 @@
-var app = angular.module('flair', ['ngRoute']);
+var app = angular.module('flair', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 var configFunction = function ($routeProvider, $httpProvider) {
     //Ensure that we are a authenticated user else push back to login page

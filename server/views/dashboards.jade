@@ -16,10 +16,13 @@ html
     script(type="text/javascript" src="/app/inspinia.js")
     script(type="text/javascript" src="/scripts/angular.js")
     script(type="text/javascript" src="/scripts/angular-route.js")
+    script(type="text/javascript" src="/scripts/angular-animate.js")
+    script(type="text/javascript" src="/scripts/plugins/ui-bootstrap/ui-bootstrap-tpls-1.1.1.js")
     script(type="text/javascript" src="/app/factories/AuthHttpResponseInterceptor.js")
     script(type="text/javascript" src="/app/factories/RestServiceFactory.js")
     script(type="text/javascript" src="/app/app.js")
     script(type="text/javascript" src="/app/controllers/dashboard-controller.js")
+    script(type="text/javascript" src="/app/controllers/modal-controller.js")
 
 
   body(ng-app="flair")
@@ -51,4 +54,6 @@ html
               ul.nav.nav-second-level.collapse.in
                 li(ng-repeat="board in boards").ng-cloak
                   a(style="margin-right: 40px") {{board.label}}
+                li
+                  a.glyphicon.glyphicon-plus(ng-click="newBoard()")
 

@@ -20,11 +20,8 @@ var serviceFactory = function ($http, $q) {
             },
 
             delete: function (entity) {
-                return $http.delete(baseurl + "/" + entity.id);
+                return $http.delete(baseurl + "/" + entity._id);
             },
-            deleteById: function (id) {
-                return  $http.delete(baseurl + "/" + id);
-            }
         };
         return operations;
     };

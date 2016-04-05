@@ -1,21 +1,23 @@
 var Dashboard = require('../models/Board');
 
-module.exports = function(){ 
+module.exports = function(){
 
-    var createDashboard = function(board,userId)
+    var createDashboard = function(board,userId,res)
     {
+
+        board.owner=userId;
         var newBoard = new Dashboard(board);
-        newBoard.owner=userId;
+
 
         newBoard.save(function(err) {
             if (err){
                 console.log('Error in Saving newBoard: '+err);
-                throw err;
+                res.json(err);
             }
-            return newBoard._id;
+            res.json(newBoard._id);
         });
     }
-    var getDashboards = function(userId)
+    var getDashboards = function(userId,res)
     {
         Dashboard.find({ 'owner' :  userId },
             function(err, boards) {
@@ -23,7 +25,7 @@ module.exports = function(){
                     console.log('Error in Saving newBoard: '+err);
                     throw err;
                 }
-              return boards;
+                res.json(boards);
             }
         );
     }
@@ -42,4 +44,4 @@ module.exports = function(){
         DeleteDashboard:deleteDashboard,
         UpdateDashboard:updateDashboard
     }
-}
+}()
