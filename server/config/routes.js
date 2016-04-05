@@ -17,7 +17,13 @@ account.get('/', function(req, res) {
 });
 
 account.get('/login', function(req, res) {
-    res.render('login',{ message: req.flash('message') });
+
+    var postdata = {
+        error:req.flash('error'),
+        prevuser:req.flash('username')
+    }
+
+    res.render('login',{postdata:postdata});
 });
 
 account.post('/login', passport.authenticate('login', {
@@ -27,7 +33,12 @@ account.post('/login', passport.authenticate('login', {
 }));
 
 account.get('/register', function(req, res) {
-    res.render('register',{message: req.flash('message')});
+    var postdata = {
+        error:req.flash('error'),
+        username:req.flash('username'),
+        name:req.flash('name')
+    }
+    res.render('register',{postdata:postdata});
 });
 
 account.post('/register', passport.authenticate('register', {

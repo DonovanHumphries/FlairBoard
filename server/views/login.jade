@@ -5,11 +5,11 @@ block content
   p Login to view your boards
   form(action="/account/login" class="m-t" method="post" role="form")
     div.form-group
-      input(class="form-control" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="username" name="username" placeholder="Email" required="" type="text")
+      input(class="form-control" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="username" name="username" placeholder="Email" required="" type="text" value=postdata.prevuser)
     div.form-group
       input(class="form-control" data-val="true" data-val-required="The Password field is required." id="password" name="password" placeholder="password" required="" type="password")
     p
-      span.field-validation-error=message
+      span.field-validation-error=postdata.error
     button(type="submit" class="btn btn-primary block full-width m-b") Login
     a(href="#")
       small Forgot password?

@@ -54,7 +54,8 @@ module.exports = function (app,config) {
                     if (user&&isValidPassword(user, password)){
                         return done(null, user);
                     }
-                    req.flash('message', "Invalid username or password");
+                    req.flash('username', username);
+                    return done(null, false,req.flash('error', "Invalid username or password"));
                 }
             );
     }));
@@ -66,18 +67,23 @@ module.exports = function (app,config) {
             var findOrCreateUser = function(){
                 User.findOne({'username':username},function(err, user) {
                     
+                    //TODO validation (enforced in UI but also required here)
                     if (err){
                         return done(err);
                     }
 
                     if (user) {
+
+                        req.flash('username',username);
+                        req.flash('name',req.param('name'));
                         return done(null, false,
-                            req.flash('message','Username Already Exists'));
+                            req.flash('error','Username Already Exists'));
                     } else {
  
                         var newUser = new User();
                         newUser.username = username;
                         newUser.password = createHash(password);
+                        //for our purposes these are the same for now
                         newUser.email = username;
                         newUser.name = req.param('name');
                         
@@ -91,6 +97,7 @@ module.exports = function (app,config) {
                     }
                 });
             };
+            // CargoCult need to find out why/if this is required"
             // Delay the execution of findOrCreateUser and execute
             // the method in the next tick of the event loop
             process.nextTick(findOrCreateUser);
