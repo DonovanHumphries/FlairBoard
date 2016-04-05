@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta(charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0")
+    title= "FlairBoard | " + title
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/fonts/font-awesome.css')
+    link(rel='stylesheet', href='/css/animate.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body.grey-bg
+    div.middle-box.text-center.loginscreen.animated.fadeInDown
+      div
+        div
+          h1.logo-name +FB
+        block content
+        p.m-t
+          small FlairBoard &copy; 2016
