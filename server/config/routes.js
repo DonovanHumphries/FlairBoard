@@ -54,8 +54,8 @@ account.get('/logout', function(req, res) {
 
 //serves the angular app and partials (must be authenticated)
 var dashboard = express.Router();
-dashboard.get('/', function(req, res) {
-    res.render('dashboards');
+dashboard.get('/',auth.requiresLogin, function(req, res) {
+    res.render('dashboards',{name: req.user.name});
 });
 
 module.exports = function (app) {

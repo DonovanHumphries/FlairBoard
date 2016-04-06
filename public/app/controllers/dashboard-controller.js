@@ -6,6 +6,8 @@ var service = ServiceFactory.GetDashboardService();
         var result = service.getAll();
         result.then(function(result) {
              $scope.boards = result.data;
+        },function(err){
+            $scope.showError("Error loading boards");
         });
     };
 
@@ -56,25 +58,22 @@ var service = ServiceFactory.GetDashboardService();
     }
 
     $scope.saveBoard = function (board) {
-
         var result = board._id == null ? service.add(board) : service.update(board);
         result.then(function (result) {
+            //TODO we can maintain local state, no reed to reload all
             $scope.refresh();
+        },function(err){
+            $scope.showError("Error saving board");
         });
     };
 
     $scope.deleteBoard = function (board) {
         var result = service.delete(board);
         result.then(function (result) {
-            if (result.success) {
-
-                if ($routeParams.boardId == board.id)
-                    $location.path("/");
-
-                $scope.refresh();
-            } else {
-                alert("Error removing Board");
-            }
+            //TODO we can maintain local state, no reed to reload all
+            $scope.refresh();
+        },function(err){
+            $scope.showError("Error removing board");
         });
     };
 

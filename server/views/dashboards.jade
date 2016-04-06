@@ -5,6 +5,12 @@ html
     title= "FlairBoard | " + title
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/fonts/font-awesome.css')
+    link(rel='stylesheet', href='/fonts/fontawesome-webfont.woff2')
+    link(rel='stylesheet', href='/fonts/glyphicons-halflings-regular.woff2')
+    link(rel='stylesheet', href='/fonts/fontawesome-webfont.woff')
+    link(rel='stylesheet', href='/fonts/glyphicons-halflings-regular.woff')
+    link(rel='stylesheet', href='/fonts/fontawesome-webfont.ttf')
+    link(rel='stylesheet', href='/fonts/glyphicons-halflings-regular.ttf')
     link(rel='stylesheet', href='/css/animate.css')
     link(rel='stylesheet', href='/css/style.css')
     script(type="text/javascript" src="/scripts/jquery-2.1.1.js")
@@ -33,11 +39,11 @@ html
             li.nav-header
               dv.dropdown.profile-element
                 span
-                  img.img-circle(alt="image" src="~/Images/brock.jpg")
+                  img.img-circle(alt="image" src="/images/brock.jpg")
                 a.dropdown-toggle(data-toggle="dropdown" href="#")
                   span.clear
                     span.block.m-t-xs
-                      strong.font-bold=username
+                      strong.font-bold=name
                     span.text-muted.text-xs.block Profile
                       b.caret
                 ul.dropdown-menu.animated.fadeInRight.m-t-xs
@@ -48,12 +54,22 @@ html
                     a(href="/account/logout") Logout
               div.logo-element +FB
             li.active
-            a(href="")
-              i.fa.fa-globe
-              span.nav-label My Boards
+              a(href="")
+                i.fa.fa-th-large
+                span.nav-label My Boards
+                span.fa.arrow
               ul.nav.nav-second-level.collapse.in
                 li(ng-repeat="board in boards").ng-cloak
                   a(style="margin-right: 40px") {{board.label}}
+                  div.dropdown(style="float: right; margin-right: 10px;top:-23px")
+                    span.glyphicon.glyphicon-cog.dropdown-toggle(data-toggle="dropdown")
+                    ul.dropdown-menu
+                     li
+                       a(ng-click="editBoard(board)") Edit
+                     li
+                       a(href="") Copy
+                     li
+                       a(ng-click="deleteBoard(board)") Delete
                 li
-                  a.glyphicon.glyphicon-plus(ng-click="newBoard()")
+                 a.glyphicon.glyphicon-plus(ng-click="newBoard()")
 

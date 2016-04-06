@@ -1,30 +1,63 @@
 var express = require('express');
-//serves static landing page (public)
+var Dashboard = require('../models/Board');
+
 var dashboards = express.Router();
-var dashboardDomainManager = require('../domainManagers/dashboardDomainManager');
+var dashboardRepository = require('../repositories/genericRepositoryFactory')(Dashboard);
 
 dashboards.get('/', function(req, res) {
-    var userId = "abbd8dd0-fafb-11e5-ba15-03fb119882f7";
-    dashboardDomainManager.GetDashboards(userId,res);
+    var userId = req.user._id;
+    dashboardRepository.FindEntities({owner:userId}).then(function(result){
+            res.json(result);
+        },
+        function(err){
+            //TODO extract out
+            res.status(500);
+            //only want to do this in development
+            res.render('error', { error: err });
+        });
 });
 
 dashboards.post('/', function(req, res) {
-    var userId = "abbd8dd0-fafb-11e5-ba15-03fb119882f7";
-    dashboardDomainManager.CreateDashboard(req.body,userId,res);
+
+    //don't trust the entity request has current user
+    req.body.owner=req.user._id;
+
+    dashboardRepository.CreateEntity(req.body).then(function(result){
+            res.json(result);
+        },
+        function(err){
+            //TODO extract out
+            res.status(500);
+            //only want to do this in development
+            res.render('error', { error: err });
+        });
 });
 
 dashboards.put('/', function(req, res) {
-    dashboardDomainManager.UpdateDashboard(req.body)
-    OK(res);
+    dashboardRepository.UpdateEntity(req.body).then(function(result){
+            res.json(result);
+        },
+        function(err){
+            //TODO extract out
+            res.status(500);
+            //only want to do this in development
+            res.render('error', { error: err });
+        });
 });
 
 dashboards.delete('/:boardId', function(req, res) {
     var boardId = req.params.boardId;
-    var userId = req.user._id;
-    dashboardDomainManager.DeleteDashboard(boardId,userId)
-    OK(res);    
+    dashboardRepository.DeleteEntity(boardId).then(function(result){
+            res.json(result);
+        },
+        function(err){
+            //TODO extract out
+            res.status(500);
+            //only want to do this in development
+            res.render('error', { error: err });
+        });
 });
 
 module.exports = function (app) {
     app.use('/api/boards', dashboards);
-}
+};
