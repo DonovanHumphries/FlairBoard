@@ -1,4 +1,4 @@
-var app = angular.module('flair', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('flair', ['ngRoute', 'ngAnimate', 'ui.bootstrap','gridstack-angular']);
 
 var configFunction = function ($routeProvider, $httpProvider) {
     $routeProvider.

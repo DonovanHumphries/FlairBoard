@@ -30,6 +30,9 @@ var serviceFactory = function ($http, $q) {
         GetDashboardService : function() {
             return RestServiceCalls($http, $q, "api/boards");
         },
+        GetRichTextService : function(boardId) {
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+"/richtexts");
+        },
     }
     return factory;
 };

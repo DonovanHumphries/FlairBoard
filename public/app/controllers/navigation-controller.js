@@ -1,8 +1,8 @@
 "use strict";
-angular.module('flair').controller('flair.dashboard', ['$scope','ServiceFactory','$uibModal', function ($scope,ServiceFactory,$uibModal) {
+angular.module('flair').controller('flair.navigation', ['$scope','ServiceFactory','$uibModal', function ($scope,ServiceFactory,$uibModal) {
 var service = ServiceFactory.GetDashboardService();
 
-    $scope.refresh = function () {
+    var refresh = function () {
         var result = service.getAll();
         result.then(function(result) {
              $scope.boards = result.data;
@@ -11,7 +11,7 @@ var service = ServiceFactory.GetDashboardService();
         });
     };
 
-    $scope.refresh();
+    refresh();
 
     $scope.showError = function (errorMessage) {
         //TODO implement toaster
@@ -32,8 +32,6 @@ var service = ServiceFactory.GetDashboardService();
 
         modalInstance.result.then(function (data) {
             $scope.saveBoard(data);
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
 
     }
@@ -52,8 +50,6 @@ var service = ServiceFactory.GetDashboardService();
 
         modalInstance.result.then(function (data) {
             $scope.saveBoard(data);
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     }
 
@@ -61,7 +57,7 @@ var service = ServiceFactory.GetDashboardService();
         var result = board._id == null ? service.add(board) : service.update(board);
         result.then(function (result) {
             //TODO we can maintain local state, no reed to reload all
-            $scope.refresh();
+           refresh();
         },function(err){
             $scope.showError("Error saving board");
         });
@@ -71,7 +67,7 @@ var service = ServiceFactory.GetDashboardService();
         var result = service.delete(board);
         result.then(function (result) {
             //TODO we can maintain local state, no reed to reload all
-            $scope.refresh();
+           refresh();
         },function(err){
             $scope.showError("Error removing board");
         });

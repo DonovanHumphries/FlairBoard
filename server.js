@@ -7,6 +7,7 @@ require('./server/config/mongoose')(config);
 require('./server/config/express')(app,config);
 require('./server/config/routes')(app);
 require('./server/api/dashboards')(app);
+require('./server/api/richtexts')(app);
 
 module.exports = app;
 
