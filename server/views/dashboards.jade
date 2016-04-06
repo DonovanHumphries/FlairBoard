@@ -29,6 +29,7 @@ html
     script(type="text/javascript" src="/app/app.js")
     script(type="text/javascript" src="/app/controllers/dashboard-controller.js")
     script(type="text/javascript" src="/app/controllers/modal-controller.js")
+    script(type="text/javascript" src="/app/controllers/board-controller.js")
 
 
   body(ng-app="flair")
@@ -60,7 +61,7 @@ html
                 span.fa.arrow
               ul.nav.nav-second-level.collapse.in
                 li(ng-repeat="board in boards").ng-cloak
-                  a(style="margin-right: 40px") {{board.label}}
+                  a(style="margin-right: 40px" ng-href="dashboards#/board/{{board._id}}") {{board.label}}
                   div.dropdown(style="float: right; margin-right: 10px;top:-23px")
                     span.glyphicon.glyphicon-cog.dropdown-toggle(data-toggle="dropdown")
                     ul.dropdown-menu
@@ -72,4 +73,23 @@ html
                        a(ng-click="deleteBoard(board)") Delete
                 li
                  a.glyphicon.glyphicon-plus(ng-click="newBoard()")
+      div#page-wrapper.gray-bg
+        div.row.border-bottom
+          nav.navbar.navbar-static-top(role="navigation" style="margin-bottom: 0")
+            div.navbar-header
+              a.navbar-minimalize.minimalize-styl-2.btn.btn-primary
+                i.fa.fa-bars
+              form(role="search" class="navbar-form-custom" method="post" action="")
+                div.form-group
+                  input#top-search.form-control(type="text" placeholder="Search for something..." name="top-search")
+            ul.nav.navbar-top-links.navbar-right
+              li
+                a(href="/account/logout")
+                  i.fa.fa-sign-out
+                  span Log out
+        div(ng-view)
+
+
+
+
 

@@ -1,0 +1,19 @@
+div(ng-controller="flair.board")
+    div.row.wrapper.border-bottom.white-bg.page-heading
+        div.col-sm-12
+            br
+           ol.breadcrumb
+              li
+                  a(href="#") FlairBoard
+              li
+                  a(href="Dashboards") Dashboards
+              li.active
+                  strong {{currentBoard.label}}
+    div.row(style="margin-right: 2px")
+        div.btn-group(style="float: right;padding: 5px")
+            button.btn.btn-primary.btn-sm.dropdown-toggle(data-toggle="dropdown" aria-expanded="false") Add
+            ul.dropdown-menu(style="left: -100px")
+                li(ng-repeat="(key, flair) in flairs")
+                    a(href="" ng-click="createItem(key)") {{flair.label}}
+    div.row(style="margin-right: 2px")
+        div.grid-stack

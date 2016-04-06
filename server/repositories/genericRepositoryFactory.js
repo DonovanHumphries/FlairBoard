@@ -54,7 +54,7 @@ module.exports = function(Entity){
         Entity.findOneAndUpdate({ '_id' :  entity._id },entity,{new: true},
             function(err, updatedEntity) {
                 if (err) {
-                    console.log('Error in Saving newBoard: '+err);
+                    console.log('Error in update: '+err);
                     throw err;
                 }
                 deferred.resolve({success:true});

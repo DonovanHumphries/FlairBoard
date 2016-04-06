@@ -4,6 +4,19 @@ var Dashboard = require('../models/Board');
 var dashboards = express.Router();
 var dashboardRepository = require('../repositories/genericRepositoryFactory')(Dashboard);
 
+dashboards.get('/:boardId', function(req, res) {
+    var boardId = req.params.boardId;
+    dashboardRepository.FindEntities({_id:boardId}).then(function(result){
+            res.json(result);
+        },
+        function(err){
+            //TODO extract out
+            res.status(500);
+            //only want to do this in development
+            res.render('error', { error: err });
+        });
+});
+
 dashboards.get('/', function(req, res) {
     var userId = req.user._id;
     dashboardRepository.FindEntities({owner:userId}).then(function(result){

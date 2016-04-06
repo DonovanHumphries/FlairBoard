@@ -4,7 +4,7 @@ var serviceFactory = function ($http, $q) {
     var RestServiceCalls = function ($http, $q, baseurl) {
         var operations = {
             get: function (id) {
-               return$http.get(baseurl + "/" + id)
+               return $http.get(baseurl + "/" + id)
             },
 
             getAll: function () {
