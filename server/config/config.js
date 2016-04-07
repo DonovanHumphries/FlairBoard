@@ -8,7 +8,7 @@ module.exports = {
         port: process.env.PORT || 80
     },
     production:{
-        db:'mongodb://FlairUser:flair@ds976.mongolab.com:53178/flair',
+        db:'mongodb://FlairUser:<password>@ds023108.mlab.com:23108/flair',
         rootPath:rootPath,
         port: process.env.PORT || 80
     }
