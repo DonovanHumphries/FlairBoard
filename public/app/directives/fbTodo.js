@@ -39,9 +39,9 @@
 
             $scope.deleteTodoItem = function (itemToDelete) {
                 todoItemService.delete(itemToDelete).then(function(result) {
-                    for (var index in $scope.TodoList.todoItems) {
+                    for (var index=0;index< $scope.TodoList.todoItems.length;index++) {
                         var item = $scope.TodoList.todoItems[index];
-                        if (itemToDelete.id === item.id) {
+                        if (itemToDelete._id === item._id) {
                             $scope.TodoList.todoItems.splice(index, 1);
                         }
                     }
@@ -92,7 +92,7 @@
             $scope.deleteCompleted = function () {
                 for (var index in $scope.TodoList.todoItems) {
                     var item = $scope.TodoList.todoItems[index];
-                    if (item.done) {
+                    if (item.isDone) {
                         $scope.deleteTodoItem(item);
                     }
                 }

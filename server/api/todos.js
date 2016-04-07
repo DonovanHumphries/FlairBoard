@@ -155,8 +155,8 @@ todos.put('/:listId/items', function(req, res) {
 });
 
 todos.delete('/:listId/items/:itemId', function(req, res) {
-    var listId = req.params.listId;
-    itemRepository.DeleteEntity(listId).then(function(result){
+    var itemId = req.params.itemId;
+    itemRepository.DeleteEntity(itemId).then(function(result){
          res.json(result);
         },
         function(err){
