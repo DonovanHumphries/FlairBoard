@@ -33,6 +33,12 @@ var serviceFactory = function ($http, $q) {
         GetRichTextService : function(boardId) {
             return RestServiceCalls($http, $q, "api/boards/"+boardId+"/richtexts");
         },
+        GetTodoListService : function(boardId) {
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+"/todoLists");
+        },
+        GetTodoItemService : function(boardId, todoListId) {
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+ "/todoLists/" + todoListId + "/items");
+        },
     }
     return factory;
 };

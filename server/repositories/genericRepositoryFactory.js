@@ -1,5 +1,6 @@
 var defer = require("node-promise").defer;
 
+//TODO Enity is .Net rename to Document
 
 module.exports = function(Entity){
 
@@ -17,6 +18,20 @@ module.exports = function(Entity){
             deferred.resolve(newEntity._id);
         });
 
+        return deferred.promise;
+    };
+    var getEntity = function(search)
+    {
+        var deferred = defer();
+        Entity.findOne(search,
+            function(err, results) {
+                if (err) {
+                    console.log('Error in find: '+err);
+                    throw err;
+                }
+                deferred.resolve(results);
+            }
+        );
         return deferred.promise;
     };
     var findEntities = function(search)
@@ -48,6 +63,21 @@ module.exports = function(Entity){
         return deferred.promise;
     };
 
+    var deleteEntities = function(search)
+    {
+        var deferred = defer();
+        Entity.remove(search,
+            function(err) {
+                if (err) {
+                    console.log('Error in delete: '+err);
+                    throw err;
+                }
+                deferred.resolve({success:true});
+            }
+        );
+        return deferred.promise;
+    };
+    
     var updateEntity = function(entity)
     {
         var deferred = defer();
@@ -65,8 +95,10 @@ module.exports = function(Entity){
     
     return {
         CreateEntity:createEntity,
+        GetEntity:getEntity,
         FindEntities:findEntities,
         DeleteEntity:deleteEntity,
+        DeleteEntities:deleteEntities,
         UpdateEntity:updateEntity
     }
 };

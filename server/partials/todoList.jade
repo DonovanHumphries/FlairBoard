@@ -1,0 +1,38 @@
+div#ibx.ibox
+    div.ibox-title
+        h5 Todo List
+        div.ibox-tools
+            a.dropdown-toggle(data-toggle="dropdown" href="" aria-expanded="false")
+                i.fa.fa-question
+            ul.dropdown-menu.dropdown-user
+                div(style="padding: 5px")
+                    h3 Todo Help
+                    p Enter you item in the box and click + or press enter to add task.
+                    p
+                        span Click&nbsp
+                        span Clear&nbsp
+                            i.fa.fa-check-square-o
+                        span &nbspto clear finished tasks.
+                    p Double click to edit and drag to reorder (You can drag tasks from one list to another).
+            a.close-link(ng-click="remove({item : TodoList})")
+                i.fa.fa-times
+    div.ibox-content
+        div.input-group
+            input(ng-keypress="($event.which === 13)?addItem():0" type="text" placeholder="Add new task. " class="input input-sm form-control" ng-model="NewTodoItem.label")
+            span.input-group-btn
+                button(ng-click="addItem()" type="button" class="btn btn-sm btn-white")
+                    i.fa.fa-plus
+                button(ng-click="deleteCompleted()" type="button" class="btn btn-sm btn-white" data-toggle="tooltip" data-placement="left" title="Clear completed" data-original-title="Clear completed")
+                    span  &nbspClear&nbsp
+                    i.fa.fa-check-square-o
+        ul(ui-sortable="sortableOptions" ng-model="TodoList.todoItems" class="todo-list m-t small-list" style="min-height:20px")
+            li(ng-repeat=" item in TodoList.todoItems")
+                div.row
+                    a(href="" class="col-xs-1 col-md-1 check-link" ng-click="toggleDone(item)")
+                        i(class="fa text-navy" ng-class="{'fa-check-square-o':item.done,'fa-square-o':!item.done}")
+                    span(ng-hide="item.editing" ng-dblclick="editItem(item)" class="col-xs-8 col-md-8" ng-class="{'todo-completed':item.isDone,'':!item.isDone}") {{item.label}}
+                    input(class="col-xs-8 col-md-8" ng-show="item.editing" ng-model="item.label" ng-blur="doneEditing(item)" ng-keypress="($event.which === 13)?doneEditing(item):0" autofocus)
+                    div.col-xs-1.col-md-1(align="right")
+                        small(ng-click="deleteTodoItem(item)")
+                            i.fa.fa-times
+

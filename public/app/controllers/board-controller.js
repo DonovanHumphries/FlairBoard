@@ -4,6 +4,7 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
 
     var service = ServiceFactory.GetDashboardService();
     var richTextService = ServiceFactory.GetRichTextService($routeParams.boardId);
+    var todoListService = ServiceFactory.GetTodoListService($routeParams.boardId);
 
     $scope.currentBoard = {_id:$routeParams.boardId};
 
@@ -16,11 +17,20 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
         height: 6,
         service: richTextService
     };
+
+    $scope.flairs["fb-todo"] = {
+        directive: "fb-todo",
+        label: "Todo List",
+        width: 2,
+        height: 4,
+        service: todoListService
+    };
+
     //TODO Move to directive (Could not find a good one online)
     var initializeGrid = function() {
         var options = {
             cell_height: 80,
-            vertical_margin: 10,
+            vertical_margin: 5,
             handle_class:"ibox-title"
         };
 
@@ -108,22 +118,25 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
         }
     }
     
-    $scope.removeItem=function(item)
+    $scope.removeItem=function(flair)
     {
         var items = $scope.layoutGrid.grid.nodes;
         if (items) {
             for (var i = 0; i < items.length; i++) {
                 var layoutItem = items[i];
                 var widget = parseProperties(layoutItem.el);
-                var flair = $scope.flairs[widget.directive];
-                if (flair.service) {
-                    flair.service.delete({_id: widget._id}).then(
-                        function (result) {
-                            $scope.layoutGrid.remove_widget(layoutItem.el, true)
-                        }, function () {
-                            $scope.showError("Error removing item");
-                        }
-                    );
+                if(widget._id===flair._id) {
+                    var flair = $scope.flairs[widget.directive];
+                    if (flair.service) {
+                        flair.service.delete({_id: widget._id}).then(
+                            function (result) {
+                                $scope.layoutGrid.remove_widget(layoutItem.el, true)
+                            }, function () {
+                                $scope.showError("Error removing item");
+                            }
+                        );
+                    }
+                    break;
                 }
             }
         }

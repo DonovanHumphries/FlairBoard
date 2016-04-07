@@ -28,6 +28,7 @@ html
     script(type="text/javascript" src="/scripts/angular.js")
     script(type="text/javascript" src="/scripts/angular-route.js")
     script(type="text/javascript" src="/scripts/angular-animate.js")
+    script(type="text/javascript" src="/scripts/plugins/ui-sortable/sortable.js")
     script(type="text/javascript" src="/scripts/plugins/gridstack/gridstack-angular.js")
     script(type="text/javascript" src="/scripts/plugins/ui-bootstrap/ui-bootstrap-tpls-1.1.1.js")
     script(type="text/javascript" src="/app/factories/AuthHttpResponseInterceptor.js")
@@ -37,6 +38,7 @@ html
     script(type="text/javascript" src="/app/controllers/modal-controller.js")
     script(type="text/javascript" src="/app/controllers/board-controller.js")
     script(type="text/javascript" src="/app/directives/fbRichText.js")
+    script(type="text/javascript" src="/app/directives/fbTodo.js")
 
 
   body(ng-app="flair")
@@ -48,7 +50,7 @@ html
               dv.dropdown.profile-element
                 span
                   img.img-circle(alt="image" src="/images/brock.jpg")
-                a.dropdown-toggle(data-toggle="dropdown" href="#")
+                a.dropdown-toggle(data-toggle="dropdown" href="")
                   span.clear
                     span.block.m-t-xs
                       strong.font-bold=name
