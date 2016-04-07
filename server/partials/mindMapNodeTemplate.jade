@@ -1,0 +1,4 @@
+.div(id="{{node._id}}" style="display: block; position: absolute;z-index: 100" ng-class="{fbchild: node.parentId}" ng-style="{left: node.left, top: node.top}" xpos="node.left" ypos="node.top")
+    div(id="text" style="z-index: 200" ng-class="{'root-node-bubble': !node.parentId, 'child-bubble': node.parentId}")
+        span(id="label" ng-hide=" node.editing" ng-dblclick="editItem(node)") {{node.label}}
+        input(ng-show="node.editing" style="color: grey; width: auto" ng-model="node.label" ng-blur="doneEditing(node)" ng-keypress="($event.which === 13)?doneEditing(node):0" autofocus="true")

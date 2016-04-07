@@ -102,8 +102,8 @@ todos.delete('/:listId', function(req, res) {
 //Items
 
 todos.get('/:listId/items/:itemId', function(req, res) {
-    var listId = req.params.listId;
-    itemRepository.GetEntity({_id:listId}).then(function(result){
+    var itemId = req.params.itemId;
+    itemRepository.GetEntity({_id:itemId}).then(function(result){
             res.json(result);
         },
         function(err){
@@ -168,5 +168,5 @@ todos.delete('/:listId/items/:itemId', function(req, res) {
 });
 
 module.exports = function (app) {
-    app.use('/api/boards/:boardId/todoLists', todos);
+    app.use('/api/boards/:boardId/todolists', todos);
 };

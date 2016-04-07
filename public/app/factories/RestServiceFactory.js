@@ -34,10 +34,16 @@ var serviceFactory = function ($http, $q) {
             return RestServiceCalls($http, $q, "api/boards/"+boardId+"/richtexts");
         },
         GetTodoListService : function(boardId) {
-            return RestServiceCalls($http, $q, "api/boards/"+boardId+"/todoLists");
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+"/todolists");
         },
         GetTodoItemService : function(boardId, todoListId) {
-            return RestServiceCalls($http, $q, "api/boards/"+boardId+ "/todoLists/" + todoListId + "/items");
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+ "/todolists/" + todoListId + "/items");
+        },
+        GetMindMapService : function(boardId) {
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+"/mindmaps");
+        },
+        GetMindMapNodeService : function(boardId, mindMapId) {
+            return RestServiceCalls($http, $q, "api/boards/"+boardId+ "/mindmaps/" + mindMapId + "/nodes");
         },
     }
     return factory;

@@ -5,6 +5,7 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
     var service = ServiceFactory.GetDashboardService();
     var richTextService = ServiceFactory.GetRichTextService($routeParams.boardId);
     var todoListService = ServiceFactory.GetTodoListService($routeParams.boardId);
+    var mindMapService = ServiceFactory.GetMindMapService($routeParams.boardId);
 
     $scope.currentBoard = {_id:$routeParams.boardId};
 
@@ -25,6 +26,15 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
         height: 4,
         service: todoListService
     };
+
+    $scope.flairs["fb-mind-map"] = {
+        directive: "fb-mind-map",
+        label: "MindMap",
+        width:8,
+        height: 6,
+        service: mindMapService
+    };
+
 
     //TODO Move to directive (Could not find a good one online)
     var initializeGrid = function() {
@@ -120,6 +130,9 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
     
     $scope.removeItem=function(flair)
     {
+        if(!flair)
+            return;
+
         var items = $scope.layoutGrid.grid.nodes;
         if (items) {
             for (var i = 0; i < items.length; i++) {

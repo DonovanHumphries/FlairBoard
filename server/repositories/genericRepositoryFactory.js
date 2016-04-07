@@ -7,9 +7,9 @@ module.exports = function(Entity){
     var createEntity = function(entity)
     {
         var deferred = defer();
-
+        //This is auto generated 
+        delete entity["_id"];
         var newEntity = new Entity(entity);
-
         newEntity.save(function(err) {
                if (err){
                 console.log('Error in Saving newEntity: '+err);
