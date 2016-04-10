@@ -1,4 +1,4 @@
-﻿angular.module("flair").directive('fbMindMap', ['ServiceFactory', function (ServiceFactory) {
+﻿angular.module("flair").directive('fbMindMap', ['ServiceFactory','toastr', function (ServiceFactory,toastr) {
 
     return {
         restrict: 'A',
@@ -26,7 +26,7 @@
                 $scope.mindMapNodeService.getAll().then(function (result) {
                         $scope.mindMapRootNodes = result.data;
                 },function (err) {
-                    $scope.showError("Could not load Mind Map");
+                    toastr.error("Could not load Mind Map");
                 });
             };
             $scope.refresh();

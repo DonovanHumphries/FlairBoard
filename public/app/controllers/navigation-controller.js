@@ -1,5 +1,5 @@
 "use strict";
-angular.module('flair').controller('flair.navigation', ['$scope','ServiceFactory','$uibModal', function ($scope,ServiceFactory,$uibModal) {
+angular.module('flair').controller('flair.navigation', ['$scope','ServiceFactory','$uibModal','toastr', function ($scope,ServiceFactory,$uibModal,toastr) {
 var service = ServiceFactory.GetDashboardService();
 
     var refresh = function () {
@@ -7,7 +7,7 @@ var service = ServiceFactory.GetDashboardService();
         result.then(function(result) {
              $scope.boards = result.data;
         },function(err){
-            $scope.showError("Error loading boards");
+            toastr.error("Error loading boards");
         });
     };
 
@@ -59,7 +59,7 @@ var service = ServiceFactory.GetDashboardService();
             //TODO we can maintain local state, no reed to reload all
            refresh();
         },function(err){
-            $scope.showError("Error saving board");
+            toastr.error("Error saving board");
         });
     };
 
@@ -69,7 +69,7 @@ var service = ServiceFactory.GetDashboardService();
             //TODO we can maintain local state, no reed to reload all
            refresh();
         },function(err){
-            $scope.showError("Error removing board");
+            toastr.error("Error removing board");
         });
     };
 

@@ -1,6 +1,6 @@
 ﻿//TODO https://github.com/summernote/angular-summernote
 
-angular.module("flair").directive('fbRichText',['$compile', '$uibModal','ServiceFactory', function ($compile, $uibModal, ServiceFactory) {
+angular.module("flair").directive('fbRichText',['$compile', '$uibModal','ServiceFactory','toastr', function ($compile, $uibModal, ServiceFactory,toastr) {
 
     return {
         restrict: 'A',
@@ -34,7 +34,10 @@ angular.module("flair").directive('fbRichText',['$compile', '$uibModal','Service
                 if ($scope.RichTextFlair.text !== aHTML) {
                     $scope.RichTextFlair.text = aHTML;
                     richTextService.update($scope.RichTextFlair).then(function(result) {
-                    },function(){$scope.showError("Error saving text");});
+                    },function(err) {
+                        toastr.error("Could not save text.");
+
+                    });
                 }
 
                 iElement.find('.summernote').destroy();
@@ -45,8 +48,11 @@ angular.module("flair").directive('fbRichText',['$compile', '$uibModal','Service
                     if(result.data.length) {
                         $scope.RichTextFlair = result.data[0];
                         iElement.find('.summernote').destroy();
-                        iElement.find('.summernote').html($scope.RichTextFlair.text);
+                        iElement.find('.summernote').html($scope.RichTextFlair.text)
                     }
+                },function(err) {
+                    toastr.error("Could not load text.")
+
                 });
             }
 

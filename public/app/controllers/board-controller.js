@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFactory', '$routeParams', '$compile', function ($scope, $http, ServiceFactory, $routeParams,$compile) {
+angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFactory', '$routeParams', '$compile','toastr', function ($scope, $http, ServiceFactory, $routeParams,$compile,toastr) {
 
     var service = ServiceFactory.GetDashboardService();
     var richTextService = ServiceFactory.GetRichTextService($routeParams.boardId);
@@ -101,7 +101,7 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
 
         service.update($scope.currentBoard).then(function (result) {
         },function (err){
-            $scope.showError("Error saving Board");
+            toastr.error("Error saving Board");
         });
     }
 
@@ -145,7 +145,7 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
                             function (result) {
                                 $scope.layoutGrid.remove_widget(layoutItem.el, true)
                             }, function () {
-                                $scope.showError("Error removing item");
+                                toastr.error("Error removing item");
                             }
                         );
                     }
@@ -176,7 +176,7 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
                     $scope.layoutGrid.add_widget(html, 0, 0, flair.width, flair.height, true);
 
             },function(err){
-                $scope.showError("Error Adding " + flair.label);
+                toastr.error("Error Adding " + flair.label);
             });
         }
     }
@@ -187,9 +187,10 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
                 if(result.data)
                     $scope.currentBoard = result.data[0];
                 initializeGrid();
+            throw "sdgsgdsdg";
         },function(err)
         {
-            $scope.showError("Error Loading Boards");
+            toastr.error("Error Loading Boards");
         });
     };
 

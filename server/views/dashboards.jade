@@ -4,6 +4,7 @@ html
     meta(charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0")
     title= "FlairBoard | " + title
     link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/plugins/toastr/toastr.min.css')
     link(rel='stylesheet', href='/fonts/font-awesome.css')
     link(rel='stylesheet', href='/fonts/fontawesome-webfont.woff2')
     link(rel='stylesheet', href='/fonts/glyphicons-halflings-regular.woff2')
@@ -24,7 +25,7 @@ html
     script(type="text/javascript" src="/scripts/plugins/pace/pace.min.js")
     script(type="text/javascript" src="/scripts/plugins/underscore/underscore-min.js")
     script(type="text/javascript" src="/scripts/plugins/gridstack/gridstack.js")
-   script(type="text/javascript" src="/scripts/plugins/summernote/summernote.min.js")
+    script(type="text/javascript" src="/scripts/plugins/summernote/summernote.min.js")
     script(type="text/javascript" src="/app/inspinia.js")
     script(type="text/javascript" src="/scripts/angular.js")
     script(type="text/javascript" src="/scripts/angular-route.js")
@@ -34,6 +35,8 @@ html
     script(type="text/javascript" src="/scripts/plugins/ui-bootstrap/ui-bootstrap-tpls-1.1.1.js")
     script(type="text/javascript" src="/app/factories/AuthHttpResponseInterceptor.js")
     script(type="text/javascript" src="/app/factories/RestServiceFactory.js")
+        script(type="text/javascript" src="/scripts/plugins/toastr/angular-toastr.min.js")
+    script(type="text/javascript" src="/scripts/plugins/toastr/angular-toastr.tpls.js")
     script(type="text/javascript" src="/app/app.js")
     script(type="text/javascript" src="/app/controllers/navigation-controller.js")
     script(type="text/javascript" src="/app/controllers/modal-controller.js")
@@ -42,6 +45,7 @@ html
     script(type="text/javascript" src="/app/directives/fbTodo.js")
     script(type="text/javascript" src="/app/directives/fbMindMap.js")
     script(type="text/javascript" src="/app/directives/fbMindMapNode.js")
+
 
 
   body(ng-app="flair")

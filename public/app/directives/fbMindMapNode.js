@@ -1,4 +1,4 @@
-﻿angular.module("flair").directive('fbMindMapNode',['$compile','$timeout', function ($compile,$timeout) {
+﻿angular.module("flair").directive('fbMindMapNode',['$compile','$timeout','toastr', function ($compile,$timeout,toastr) {
 
     return {
         restrict: 'A',
@@ -76,7 +76,10 @@
                 if ($scope.node.parentId) {
                     $(element).parent().remove();
 
-                    $scope.service.delete($scope.node).then(function(result) { $scope.refresh(); });
+                    $scope.service.delete($scope.node).then(function(result) { $scope.refresh(); },function (err) {
+                        toastr.error("Could not delete node.")
+
+                    });
                 }
             }
 
@@ -92,7 +95,9 @@
             }
 
             $scope.saveNode = function () {
-                $scope.service.update($scope.node);
+                $scope.service.update($scope.node).then(function(res){},function (err) {
+                    toastr.error("Could not save node.")
+                });
             }
 
             function addNode(creator) {
@@ -108,7 +113,10 @@
                         nubConatiner.remove();
                         nodeConatiner.append(childnode);
                         drawNub(element);
-                }
+                },function (err) {
+                    toastr.error("Could not create node.")
+                    
+                    }
                  );
             }
 

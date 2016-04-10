@@ -1,4 +1,4 @@
-﻿angular.module("flair").directive('fbTodo',['ServiceFactory', function (ServiceFactory) {
+﻿angular.module("flair").directive('fbTodo',['ServiceFactory','toastr', function (ServiceFactory,toastr) {
 
     return {
         restrict: 'A',
@@ -25,7 +25,7 @@
                             $scope.TodoList.todoItems.push(newItem);
 
                     },function (err){
-                        $scope.showError("Could not add Todo Item");
+                        toastr.error("Could not add Todo Item");
                     });
                 }               
             };
@@ -33,7 +33,7 @@
             $scope.savetodoList = function() {
                 todoService.update($scope.TodoList).then(function (result) {
                 },function (err) {
-                    $scope.showError("Could not save Todo list");
+                    toastr.error("Could not save Todo list");
                 });
             };
 
@@ -46,7 +46,7 @@
                         }
                     }
                 },function () {
-                    $scope.showError("Error deleting item");
+                    toastr.error("Error deleting item");
                 });
             }
 
@@ -116,7 +116,7 @@
                             return a.priority > b.priority;
                         });
                 },function (err) {
-                    $scope.showError("Could not load Todo List");
+                    toastr.error("Could not load Todo List");
                 });
             }
 
