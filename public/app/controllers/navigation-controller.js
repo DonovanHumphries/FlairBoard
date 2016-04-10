@@ -13,11 +13,6 @@ var service = ServiceFactory.GetDashboardService();
 
     refresh();
 
-    $scope.showError = function (errorMessage) {
-        //TODO implement toaster
-        alert(errorMessage);
-    }
-
     $scope.newBoard = function () {
         var modalInstance = $uibModal.open({
             animation: true,
