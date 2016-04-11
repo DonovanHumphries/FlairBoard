@@ -59,6 +59,7 @@
                 todoItemService.update(item);
             };
 
+            // this only occurs if the list is re-ordered
             var saveItems = function() {
                 for (var index in $scope.TodoList.todoItems) {
                     var item = $scope.TodoList.todoItems[index];

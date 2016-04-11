@@ -8,7 +8,6 @@
 
             var boardId = attrs.boardid;
             var mindMapId = attrs.fbid;
-            //var mindMapService = serviceFactory.GetMindMapService(boardId);
             $scope.mindMapNodeService = ServiceFactory.GetMindMapNodeService(boardId, mindMapId);
            
             $scope.zoom = 1;

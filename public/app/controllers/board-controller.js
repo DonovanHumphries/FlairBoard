@@ -187,7 +187,6 @@ angular.module('flair').controller('flair.board', ['$scope', '$http', 'ServiceFa
                 if(result.data)
                     $scope.currentBoard = result.data[0];
                 initializeGrid();
-            throw "sdgsgdsdg";
         },function(err)
         {
             toastr.error("Error Loading Boards");
